@@ -1,0 +1,30 @@
+version: '3.12'
+
+services:
+  database_service:
+    build:
+      context: ./database_service
+      dockerfile: Dockerfile
+    image: database-service-compose:latest
+    container_name: database_service
+    ports:
+      - "5003:5003"
+    networks:
+      - app-net
+
+  scheduler_service:
+    build:
+      context: ./scheduler_service
+      dockerfile: Dockerfile
+    image: scheduler-service-compose:latest
+    container_name: scheduler_service
+    environment:
+      TARGET_URL: "http://database_service:5003/health"
+    depends_on:
+      - database_service
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    driver: bridge
