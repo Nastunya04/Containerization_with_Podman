@@ -39,6 +39,7 @@ This task continues the microservices project from the previous homework. The go
 
 ### 1. Go to project folder
 ```bash
+cd hw6
 cd database_service
 ```
 
@@ -128,7 +129,7 @@ podman rmi database-service-image
 ### 1. Navigate to the project root
 
 ```bash
-cd HW6
+cd hw6
 ```
 
 ### 2. Run both services
