@@ -29,7 +29,7 @@ This task continues the microservices project from the previous homework. The go
 
 ## What Was Done:
 
-- Moved `Dockerfile` to project root.
+- Created `Dockerfile` for containerization of database service.
 - Built container image using Podman.
 - Ran the container and exposed port 5003.
 - Tested all service endpoints via `curl`.
@@ -63,6 +63,8 @@ curl http://localhost:5003/
 
 ***Expected response:***
 
+<img width="476" alt="image" src="https://github.com/user-attachments/assets/d9cd6d04-5f86-421c-b47d-c68c7352cf01" />
+
 
 ### Health check
 ```bash
@@ -70,6 +72,8 @@ curl http://localhost:5003/health
 ```
 
 ***Expected response:***
+
+<img width="527" alt="image" src="https://github.com/user-attachments/assets/8c809b11-89f4-4725-8720-5eb9ee89bdc1" />
 
 
 ### Write translation record
@@ -82,6 +86,10 @@ curl -X POST http://localhost:5003/write \
 
 ***Expected response:***
 
+```
+{"message":"Record saved.","record":{"original_text":"Hello","translated_text":"Hola","target_language":"es","detected_language":"en"}}
+```
+
 ### Read records
 
 ```bash
@@ -90,6 +98,9 @@ curl http://localhost:5003/read
 
 ***Expected response:***
 
+```
+{"records":[{"original_text":"Hello","translated_text":"Hola","target_language":"es","detected_language":"en"}]}% 
+```
 
 ## View Logs
 
@@ -98,6 +109,8 @@ podman logs database-service-container
 ```
 
 ***The response I got:***
+
+<img width="542" alt="image" src="https://github.com/user-attachments/assets/4b4afbd9-df4d-4eed-98ec-a7e40ab8b1eb" />
 
 
 ## Clean Up
@@ -144,6 +157,9 @@ podman-compose up --build -d
 podman ps
 ```
 
+<img width="1063" alt="image" src="https://github.com/user-attachments/assets/e6767e6d-94c6-484a-b5b4-ba41a2d77708" />
+
+
 ### 4. View logs
 
 **Database service**
@@ -156,6 +172,9 @@ It should show entries like:
 ```
 "GET /health HTTP/1.1" 200 OK
 ```
+
+<img width="518" alt="image" src="https://github.com/user-attachments/assets/b8d1efc7-3c9e-4ac0-b925-16a3d1a11c75" />
+
 
 ## Scheduler Behavior
 
